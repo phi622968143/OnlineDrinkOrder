@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點飲料</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .drink-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        .drink-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .price { color: #e67e22; font-weight: bold; margin: 10px 0; }
+        .size-select { margin-top: 10px; display: none; }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover { background: #2ecc71; }
+    </style>
+</head>
+<body>
+
+    <h1>點飲料系統</h1>
+
+    <form action="http://localhost:3000/order" method="POST" id="order-form">
+        <div class="container">
+            
+            <!-- 🍺 大啤酒 -->
+            <div class="drink-card">
+                <img src="/image/beer.jpg" alt="大啤酒">
+                <h3>大啤酒</h3>
+                <p class="price">大：100元 / 小：50元</p>
+                <label>
+                    <input type="radio" name="drink" value="大啤酒" onclick="toggleSizeSelect(this)"> 選擇
+                </label>
+                <div class="size-select">
+                    <label>大小：</label>
+                    <select name="size">
+                        <option value="大">大</option>
+                        <option value="小">小</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 🍊 柳橙汁 -->
+            <div class="drink-card">
+                <img src="/image/juice.jpg" alt="柳橙汁">
+                <h3>柳橙汁</h3>
+                <p class="price">大：50元 / 小：30元</p>
+                <label>
+                    <input type="radio" name="drink" value="柳橙汁" onclick="toggleSizeSelect(this)"> 選擇
+                </label>
+                <div class="size-select">
+                    <label>大小：</label>
+                    <select name="size">
+                        <option value="大">大</option>
+                        <option value="小">小</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ☕ 卡布奇諾 -->
+            <div class="drink-card">
+                <img src="/image/coffee.jpg" alt="卡布奇諾">
+                <h3>卡布奇諾</h3>
+                <p class="price">大：50元 / 小：30元</p>
+                <label>
+                    <input type="radio" name="drink" value="卡布奇諾" onclick="toggleSizeSelect(this)"> 選擇
+                </label>
+                <div class="size-select">
+                    <label>大小：</label>
+                    <select name="size">
+                        <option value="大">大</option>
+                        <option value="小">小</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit" class="submit-btn">送出訂單</button>
+    </form>
+
+    <script>
+        function toggleSizeSelect(selectedRadio) {
+            // 隱藏所有 size-select
+            document.querySelectorAll('.size-select').forEach(select => {
+                select.style.display = 'none';
+            });
+
+            // 只顯示選中的飲料對應的大小選擇
+            selectedRadio.closest('.drink-card').querySelector('.size-select').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
