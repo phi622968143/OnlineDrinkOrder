@@ -27,7 +27,7 @@
         }
     
         // 透過 Axios 發送訂單到後端
-        axios.post("http://localhost:3000/order", {
+        axios.post("http://04e4-111-184-174-4.ngrok-free.app/order", {
             drink: selectedDrink,
             size: selectedSize
         })
